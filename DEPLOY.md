@@ -23,6 +23,7 @@ Your live URL shows plain text **"Not Found"** because Render is running this as
 | **Build Command** | `npm ci && npm run build` |
 | **Start Command** | `npm start` |
 | **Publish Directory** | **leave blank** |
+| **Node Version** | **20** (required — Node 26 breaks `better-sqlite3`) |
 
 4. Click **Create Web Service**
 
@@ -35,7 +36,19 @@ After deploy finishes (2–3 min), test:
 
 If `/api/health` returns JSON, the Node server is running correctly.
 
-## Common mistakes
+## Build failed: `better-sqlite3` / `node-gyp` / `make failed`
+
+Render defaulted to **Node 26**, which cannot compile the SQLite database module.
+
+**Fix:** In Render → your service → **Environment** → add:
+
+```
+NODE_VERSION = 20
+```
+
+Or use the `.node-version` file in this repo (already set to `20`). Then **Manual Deploy → Clear build cache & deploy**.
+
+---
 
 | Wrong | Right |
 |-------|-------|
