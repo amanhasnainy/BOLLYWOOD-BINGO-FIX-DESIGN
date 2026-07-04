@@ -12,8 +12,8 @@ export default defineConfig({
     },
   },
   root: path.resolve(import.meta.dirname, "client"),
-  // Set BASE_PATH=/your-repo-name/ for GitHub Pages project sites.
-  base: process.env.BASE_PATH || "./",
+  // GitHub Pages project sites need BASE_PATH=/repo-name/ ; Render uses "/".
+  base: process.env.BASE_PATH || "/",
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
